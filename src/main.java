@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
+import java.util.Scanner;
 
 /**
  *
@@ -13,11 +14,45 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola grupo 5");
-        System.out.println("Hola soy Gerardo");
-        System.out.println("F");
-        System.out.println("io");
+
+        Scanner sc = new Scanner(System.in);
+        int opcion = 0;
+        int nodo_info = 0;
+        Cola cola = new Cola();
+
+        do {
+            System.out.println("Menu: \n\n"
+                    + "1. Insertar nodo \n"
+                    + "2. Extraer un nodo\n"
+                    + "3. Mostrar contenido de la cola\n"
+                    + "4. Salir. \n"
+                    + "Ingrese una opcion: ");
+            opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    int informacion;
+                    System.out.println("Ingrese la información que desee: ");
+                    informacion = sc.nextInt();
+                    cola.Insertar(informacion);
+                    break;
+                case 2:
+                    if (!cola.ColaVacia()) {
+                        cola.Extraer();
+                    } else {
+                        System.out.println("La cola esta vacia");
+                    }
+                    break;
+                case 3:
+                    cola.Mostrar();
+                    break;
+                case 4:
+                    System.out.println("Hasta luego !");
+                    break;
+            }
+        } while (opcion != 4);
 
     }
-    
+
 }
+
+
