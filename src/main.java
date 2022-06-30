@@ -18,6 +18,7 @@ public class main {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
         int nodo_info = 0;
+        int num = 0;
         Cola cola = new Cola();
 
         do {
@@ -30,14 +31,13 @@ public class main {
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
-                    int informacion;
-                    System.out.println("Ingrese la información que desee: ");
-                    informacion = sc.nextInt();
-                    cola.Insertar(informacion);
+                    num++;
+                    System.out.println("Llego un nuevo cliente");
+                    cola.Insertar(num);
                     break;
                 case 2:
                     if (!cola.ColaVacia()) {
-                        cola.Extraer();
+                        cola.Extraer(num);
                     } else {
                         System.out.println("La cola esta vacia");
                     }
@@ -54,5 +54,3 @@ public class main {
     }
 
 }
-
-

@@ -8,6 +8,7 @@
  * @author Pc
  */
 public class Cola {
+
     private Nodo inicioCola;
     private Nodo finalCola;
     String Cola = "";
@@ -25,9 +26,9 @@ public class Cola {
         }
     }
 
-    public void Insertar(int info) {
+    public void Insertar(int num) {
         Nodo nuevo_nodo = new Nodo();
-        nuevo_nodo.info = info;
+        nuevo_nodo.num_orden = num;
         nuevo_nodo.siguiente = null;
 
         if (ColaVacia() == true) {
@@ -39,18 +40,23 @@ public class Cola {
         }
     }
 
-    public int Extraer() {
+    public Nodo Extraer(/*String nombre, int num_asientos, int sala, int combo, double monto, */int num) {
         if (!ColaVacia()) {
-            int informacion = inicioCola.info;
+ /*          inicioCola.nombre = nombre;
+            inicioCola.num_asientos = num_asientos;
+            inicioCola.sala = sala;
+            inicioCola.combo = combo;
+            inicioCola.monto = monto;*/
+            Nodo nodo_retirado = inicioCola;
             if (inicioCola == finalCola) {
                 inicioCola = null;
                 finalCola = null;
             } else {
                 inicioCola = inicioCola.siguiente;
             }
-            return informacion;
+            return nodo_retirado;
         } else {
-            return 0;
+            return null;
         }
     }
 
@@ -59,7 +65,7 @@ public class Cola {
         String ColaInvertida = "";
 
         while (recorrido != null) {
-            Cola += recorrido.info + " ";
+            Cola += recorrido.num_orden + " ";
             recorrido = recorrido.siguiente;
         }
 

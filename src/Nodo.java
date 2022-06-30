@@ -8,7 +8,13 @@
  * @author Pc
  */
 public class Nodo {
-    int info;
+
+    int num_orden;
+    String nombre;
+    int num_asientos;
+    int sala;
+    int combo;
+    double monto;
     Nodo siguiente;
-  
+
 }
