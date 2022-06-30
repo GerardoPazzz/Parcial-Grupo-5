@@ -1,56 +1,80 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Pc
- */
 public class main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        int opcion = 0;
-        int nodo_info = 0;
-        int num = 0;
+        int opcion, num = 0;
         Cola cola = new Cola();
 
         do {
-            System.out.println("Menu: \n\n"
-                    + "1. Insertar nodo \n"
-                    + "2. Extraer un nodo\n"
-                    + "3. Mostrar contenido de la cola\n"
-                    + "4. Salir. \n"
-                    + "Ingrese una opcion: ");
-            opcion = sc.nextInt();
-            switch (opcion) {
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+                  "         Cine Madrid\n\n"
+                + "1. Nuevo cliente\n"
+                + "2. Atender cliente\n"
+                + "3. Mostrar clientes restantes\n"
+                + "4. Salir. \n\n"
+                + "Ingrese una opcion: "));
+            switch(opcion){
                 case 1:
                     num++;
-                    System.out.println("Llego un nuevo cliente");
+                    JOptionPane.showMessageDialog(null, "Llego un nuevo cliente");
                     cola.Insertar(num);
                     break;
                 case 2:
+                    double total = 0;
                     if (!cola.ColaVacia()) {
-                        cola.Extraer(num);
+                       String nombre = JOptionPane.showInputDialog(null, "Introducir nombre: ");
+                       int sala = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                    "Cartelera\n\n"
+                                    + "1. Gemelo Siniestro\n"
+                                    + "2. Lightyear\n"
+                                    + "3. Minions: Nace un villano\n"
+                                    + "4. El Buen Patron\n"
+                                    + "5. Desastre Inminente\n"
+                                    + "Ingrese una opcion: "));
+                       int nroAsientos = Integer.parseInt(JOptionPane.showInputDialog(null,"Introducir nro de asientos"));
+                       total += nroAsientos * 14.50;
+                       int combo = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                    "Comida\n\n"
+                                    + "Combo 1: 1 Cancha mediana + Gaseosa mediana\n"
+                                    + "Combo 2: 1 Cancha grande + 2 Gaseosas medianas\n"
+                                    + "Combo 3: 1 Cancha gigante + 3 Gaseosas medianas\n"
+                                    + "Combo 4: 1 Cancha mediana + Nachos + 1 Gaseosa mediana\n"
+                                    + "Combo 5: 1 Cancha grande + Nachos + 2 Gaseosa grandes\n"
+                                    + "Ingrese combo: "));
+                       total += 10.00 + combo * 4.50;
+                       Nodo nodoAux= cola.Extraer(nombre, nroAsientos, sala, combo, total);
+                       Boleta(nodoAux);
                     } else {
                         System.out.println("La cola esta vacia");
                     }
-                    break;
+                        break;
                 case 3:
                     cola.Mostrar();
                     break;
                 case 4:
-                    System.out.println("Hasta luego !");
+                    JOptionPane.showMessageDialog(null, "Hasta luego!");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opcion NO disponible!");
                     break;
             }
-        } while (opcion != 4);
-
+        } while(opcion != 4);
     }
-
+    
+    static void Boleta(Nodo nodo){
+        double totalAsientos = nodo.num_asientos * 14.50;
+        double totalCombo = nodo.combo * 4.50 + 10.00;
+        JOptionPane.showMessageDialog(null,
+                  "         Cine Madrid \n"
+                + "\nCliente N°" + nodo.num_orden 
+                + "\nNombre: " + nodo.nombre
+                + "\nSala N°" + nodo.sala
+                + "\nNro de asientos: " + nodo.num_asientos
+                + "\nTotal en asientos: " + totalAsientos
+                + "\nCombo pedido: " + nodo.combo
+                + "\nTotal en Combo: " + totalCombo
+                + "\nMonto Total: " + nodo.monto
+        );
+    }
 }
