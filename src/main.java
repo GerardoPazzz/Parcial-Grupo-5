@@ -12,12 +12,13 @@ public class main {
                 + "1. Nuevo cliente\n"
                 + "2. Atender cliente\n"
                 + "3. Mostrar clientes restantes\n"
-                + "4. Salir. \n\n"
+                + "4. Cerrar\n"
+                + "5. Salir \n\n"
                 + "Ingrese una opcion: "));
             switch(opcion){
                 case 1:
-                    num++;
-                    JOptionPane.showMessageDialog(null, "Llego un nuevo cliente");
+                    num = 1 + (int)(Math.random()*99);
+                    JOptionPane.showMessageDialog(null, "Llego un nuevo cliente. Codigo: "+num);
                     cola.Insertar(num);
                     break;
                 case 2:
@@ -46,20 +47,24 @@ public class main {
                        Nodo nodoAux= cola.Extraer(nombre, nroAsientos, sala, combo, total);
                        Boleta(nodoAux);
                     } else {
-                        System.out.println("La cola esta vacia");
+                        JOptionPane.showMessageDialog(null, "La cola esta vacia!");
                     }
                         break;
                 case 3:
                     cola.Mostrar();
                     break;
                 case 4:
+                    cola.Eliminar();
+                    JOptionPane.showMessageDialog(null, "Cine CERRADO, vuelva pronto!");
+                    break;
+                case 5:
                     JOptionPane.showMessageDialog(null, "Hasta luego!");
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion NO disponible!");
                     break;
             }
-        } while(opcion != 4);
+        } while(opcion != 5);
     }
     
     static void Boleta(Nodo nodo){
