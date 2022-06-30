@@ -1,9 +1,9 @@
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; //para mostrar una pequeña interfaz con la que podemos interactuar
 
 public class main {
     public static void main(String[] args) {
 
-        int opcion, num = 0;
+        int opcion, num;
         Cola cola = new Cola();
 
         do {
@@ -14,14 +14,14 @@ public class main {
                 + "3. Mostrar clientes restantes\n"
                 + "4. Cerrar\n"
                 + "5. Salir \n\n"
-                + "Ingrese una opcion: "));
+                + "Ingrese una opcion: "));//menu principal
             switch(opcion){
-                case 1:
-                    num = 1 + (int)(Math.random()*99);
+                case 1: //llega un nuevo cliente a la cola
+                    num = 1 + (int)(Math.random()*99);//codigo de orden entre 1-100
                     JOptionPane.showMessageDialog(null, "Llego un nuevo cliente. Codigo: "+num);
                     cola.Insertar(num);
                     break;
-                case 2:
+                case 2: //se atiende al cliente
                     double total = 0;
                     if (!cola.ColaVacia()) {
                        String nombre = JOptionPane.showInputDialog(null, "Introducir nombre: ");
@@ -50,14 +50,14 @@ public class main {
                         JOptionPane.showMessageDialog(null, "La cola esta vacia!");
                     }
                     break;
-                case 3:
+                case 3://se muestra el codigo de los clientes q faltan
                     cola.Mostrar();
                     break;
-                case 4:
+                case 4://se eliminan todos los codigos que quedan
                     cola.Eliminar();
                     JOptionPane.showMessageDialog(null, "Cine CERRADO, vuelva pronto!");
                     break;
-                case 5:
+                case 5://cerrar el menu principal
                     JOptionPane.showMessageDialog(null, "Hasta luego!");
                     break;
                 default:
@@ -67,7 +67,7 @@ public class main {
         } while(opcion != 5);
     }
     
-    static void Boleta(Nodo nodo){
+    static void Boleta(Nodo nodo){//imprimir boleta 
         double totalAsientos = nodo.num_asientos * 14.50;
         double totalCombo = nodo.combo * 4.50 + 10.00;
         JOptionPane.showMessageDialog(null,
