@@ -12,7 +12,7 @@ public class Cola {
         finalCola = null;
     }
 
-    public boolean ColaVacia() {
+    public boolean ColaVacia() { //verificar si la cola esta vacia
         if (inicioCola == null) {
             return true;
         } else {
@@ -20,7 +20,7 @@ public class Cola {
         }
     }
 
-    public void Insertar(int num) {
+    public void Insertar(int num) { //nuevo cliente con su codigo
         Nodo nuevo_nodo = new Nodo();
         nuevo_nodo.num_orden = num;
         nuevo_nodo.siguiente = null;
@@ -34,7 +34,7 @@ public class Cola {
         }
     }
 
-    public Nodo Extraer(String nombre, int num_asientos, int sala, int combo, double monto) {
+    public Nodo Extraer(String nombre, int num_asientos, int sala, int combo, double monto) {//atender al cliente
         if (!ColaVacia()) {
             inicioCola.nombre = nombre;
             inicioCola.num_asientos = num_asientos;
@@ -54,7 +54,7 @@ public class Cola {
         }
     }
 
-    public void Mostrar() {
+    public void Mostrar() { //muestra los clientes que faltan segun su codigo de orden
         Nodo recorrido = inicioCola;
         String ColaInvertida = "";
 
@@ -72,7 +72,7 @@ public class Cola {
         Cola = "";
     }
 
-    public void Eliminar() {
+    public void Eliminar() { //se elimina el codigo de todos los clientes restantes
         if (!ColaVacia()) {
             if (inicioCola == finalCola) {
                 inicioCola = null;
